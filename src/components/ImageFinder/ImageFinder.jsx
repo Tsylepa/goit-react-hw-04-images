@@ -51,7 +51,8 @@ function ImageFinder() {
   async function onSearch(e) {
     e.preventDefault();
     setPage(1);
-    setData(await fetchImages());
+    const data = await fetchImages();
+    setData(data);
 
     window.scrollTo(0, 0);
   }
