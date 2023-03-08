@@ -17,6 +17,7 @@ function ImageFinder() {
   useEffect(() => {
     if (page === 1) return;
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   async function fetchImages(page) {
