@@ -51,8 +51,7 @@ function ImageFinder() {
   async function onSearch(e) {
     e.preventDefault();
     setPage(1);
-    const data = await fetchImages();
-    setData(data);
+    setData(await fetchImages());
 
     window.scrollTo(0, 0);
   }
@@ -81,7 +80,7 @@ function ImageFinder() {
     <>
       <Searchbar onSearch={onSearch} handleInput={handleInput} />
       <ImageGallery data={data} openModal={openModal} />
-      {data.length !== 0 && (
+      {data && data.length !== 0 && (
         <Button loadMore={() => setPage(prevState => prevState + 1)} />
       )}
       {modalIsOpen && <Modal closeModal={closeModal} image={modalImage} />}
