@@ -15,18 +15,9 @@ function ImageFinder() {
   const [modalImage, setModalImage] = useState('');
 
   useEffect(() => {
-    if (!query) return;
-    async function fetchData() {
-      const incomingData = await fetchImages(page);
-      setData(prevState => [...prevState, ...incomingData]);
-    }
+    if (page === 1) return;
     fetchData();
   }, [page]);
-
-  // useEffect(() => {
-  //   setData([]);
-  //   setPage(1);
-  // }, [query]);
 
   async function fetchImages(page) {
     const BASE_URL = 'https://pixabay.com/api';
@@ -49,6 +40,11 @@ function ImageFinder() {
     } finally {
       setLoading(false);
     }
+  }
+
+  async function fetchData() {
+    const incomingData = await fetchImages(page);
+    setData(prevState => [...prevState, ...incomingData]);
   }
 
   async function onSearch(e) {
