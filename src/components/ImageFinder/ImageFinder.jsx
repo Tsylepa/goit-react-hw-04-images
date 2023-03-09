@@ -10,7 +10,7 @@ function ImageFinder() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState('');
 
@@ -79,10 +79,8 @@ function ImageFinder() {
   return (
     <>
       <Searchbar onSearch={onSearch} handleInput={handleInput} />
-      <ImageGallery data={data} openModal={openModal} />
-      {data && data.length !== 0 && (
-        <Button loadMore={() => setPage(prevState => prevState + 1)} />
-      )}
+      {data && <ImageGallery data={data} openModal={openModal} />}
+      {data && <Button loadMore={() => setPage(prevState => prevState + 1)} />}
       {modalIsOpen && <Modal closeModal={closeModal} image={modalImage} />}
       {loading && <Loader />}
     </>
