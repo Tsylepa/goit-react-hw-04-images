@@ -6,7 +6,6 @@ const Modal = function ({ closeModal, image }) {
   useEffect(() => {
     function onEscPress(e) {
       if (e.key !== 'Escape') return;
-      console.log('dsdsdsd');
       closeModal();
     }
 
@@ -15,7 +14,7 @@ const Modal = function ({ closeModal, image }) {
     return () => {
       document.removeEventListener('keydown', onEscPress);
     };
-  }, [onEscPress]);
+  }, [closeModal]);
 
   return (
     <Overlay
