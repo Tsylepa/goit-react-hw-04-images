@@ -16,7 +16,7 @@ const Searchform = ({ onSearch, handleInput }) => {
         autocomplete="off"
         autoFocus
         placeholder="Search images and photos"
-        onChange={handleInput}
+        name="query"
       />
     </Form>
   );
@@ -24,7 +24,7 @@ const Searchform = ({ onSearch, handleInput }) => {
 
 Searchform.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  handleInput: PropTypes.func.isRequired,
+  // handleInput: PropTypes.func.isRequired,
 };
 
 export default Searchform;
