@@ -16,33 +16,30 @@ function ImageFinder() {
   const [lastPage, setLastPage] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, [page]);
+    async function fetchData() {
+      const { hits, totalHits } = await fetchImages({
+        page,
+        query,
+        switchLoading,
+      });
 
-  useEffect(() => {
-    setPage(1);
+      page === 1
+        ? setData(hits)
+        : setData(prevState => [...prevState, ...hits]);
+      checkLastPage(totalHits);
+    }
     fetchData();
-  }, [query]);
+  }, [page, query]);
 
   function switchLoading() {
     setLoading(prevState => !prevState);
   }
 
-  async function fetchData() {
-    const { hits, totalHits } = await fetchImages({
-      page,
-      query,
-      switchLoading,
-    });
-
-    page === 1 ? setData(hits) : setData(prevState => [...prevState, ...hits]);
-    checkLastPage(totalHits);
-  }
-
   async function onSearch(e) {
     e.preventDefault();
-    window.scrollTo(0, 0);
+    setPage(1);
     setQuery(e.target.query.value);
+    window.scrollTo(0, 0);
   }
 
   function openModal(image) {
