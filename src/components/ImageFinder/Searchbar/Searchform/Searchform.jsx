@@ -2,9 +2,14 @@ import { Form, Button, Label, Input } from './Searchform.styled';
 import { BsSearch } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
-const Searchform = ({ onSearch, handleInput }) => {
+const Searchform = ({ onSearch }) => {
+  function search(e) {
+    e.preventDefault();
+    onSearch(e.target.query.value);
+  }
+
   return (
-    <Form onSubmit={onSearch}>
+    <Form onSubmit={search}>
       <Button type="submit">
         <Label>
           <BsSearch />
@@ -24,7 +29,6 @@ const Searchform = ({ onSearch, handleInput }) => {
 
 Searchform.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  // handleInput: PropTypes.func.isRequired,
 };
 
 export default Searchform;
