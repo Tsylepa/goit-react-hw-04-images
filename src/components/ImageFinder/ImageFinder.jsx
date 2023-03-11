@@ -13,6 +13,7 @@ function ImageFinder() {
   const [lastPage, setLastPage] = useState(false);
 
   useEffect(() => {
+    if (!query.trim()) return;
     async function fetchData() {
       const { hits, totalHits } = await fetchImages({
         page,
